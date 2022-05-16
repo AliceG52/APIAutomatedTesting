@@ -1,0 +1,26 @@
+{
+  "name": "apiautomatedtesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliceG52/APIAutomatedTesting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliceG52/APIAutomatedTesting/issues"
+  },
+  "homepage": "https://github.com/AliceG52/APIAutomatedTesting#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
