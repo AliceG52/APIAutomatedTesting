@@ -5,4 +5,4 @@ Simple Test using Javascript and Cucumber to perform POST, GET and DELETE reques
 Run 'npm install' within repository root folder
 
 ## How To Run
-Run 'npm test' within resposity root folder 
+Run 'npm test' within repository root folder 
