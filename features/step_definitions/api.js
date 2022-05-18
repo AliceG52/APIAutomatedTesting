@@ -6,21 +6,29 @@ let postResponseStatus;
 let getResponse;
 
 When('I make a POST request with the following details', async function (table) {
-    // If the POST request returns a new ID, we could return the response.data for use later.
-    postResponseStatus = await axios.post('https://608abf88737e470017b73d96.mockapi.io/Cameras/', table.rowsHash())
+    var request = table.rowsHash();
+
+    // Set correct data type.
+    request.SelfTimer = (request.SelfTimer) === 'true';
+    request.Flash = (request.Flash) === 'true';
+    console.log(request)
+
+    postResponseStatus = await axios.post('https://608abf88737e470017b73d96.mockapi.io/Cameras/', )
     .then(function (response) {
-        return response.status;
+        console.log(response)
+        return response;
     })
 });
   
-Then('it responds with a http status code of Created', function () {
-    assert(postResponseStatus == 201);
+Then('it responds with a http status code of {int}', function (statusCode) {
+    // console.log(postResponseStatus);
+    assert(postResponseStatus.status == statusCode);
 });
 
-When('I make a GET request for Camera {int}', async function (id) {
-    // If the POST request returns a new ID, we could use the new id as the parameter for the GET.
-    getResponse = await axios.get('https://608abf88737e470017b73d96.mockapi.io/Cameras/' + id)
+When('I make a GET request for the newly created data', async function () {
+    getResponse = await axios.get('https://608abf88737e470017b73d96.mockapi.io/Cameras/' + postResponseStatus.data.id)
     .then(function(response) {
+        console.log(response.data);
         return response.data;
     })
 })
@@ -42,4 +50,11 @@ Then('I expect the following response data types', function (table) {
             throw `Property '${expectedPropertyName}' does not exist in GET response`;
         }
     });
+})
+
+When('I make a DELETE request for the newly created data', async function () {
+    postResponseStatus = await axios.delete('https://608abf88737e470017b73d96.mockapi.io/Cameras/' + postResponseStatus.data.id)
+    .then(function(response) {
+        return response;
+    })
 })
