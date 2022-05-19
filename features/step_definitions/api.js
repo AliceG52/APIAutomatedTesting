@@ -13,7 +13,7 @@ When('I make a POST request with the following details', async function (table) 
     request.Flash = (request.Flash) === 'true';
     console.log(request)
 
-    postResponseStatus = await axios.post('https://608abf88737e470017b73d96.mockapi.io/Cameras/', )
+    postResponseStatus = await axios.post('https://608abf88737e470017b73d96.mockapi.io/Cameras/', request)
     .then(function (response) {
         console.log(response)
         return response;
